@@ -22,63 +22,64 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ p
   });
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-8">最新文章</h1>
+    <div className="max-w-[880px] mx-auto px-4 pb-20">
+      <h1 className="text-2xl font-bold mb-6 text-[#1d2129]">最新文章</h1>
       {posts.length === 0 ? (
-        <p className="text-gray-400">目前还没有任何文章。</p>
+        <p className="text-[#86909c]">目前还没有任何文章。</p>
       ) : (
         <>
-          <div className="grid gap-6">
+          <div className="grid gap-4">
             {posts.map((post) => (
               <Link key={post.id} href={`/post/${post.id}`}>
-                <div className="bg-gray-900 border border-gray-800 rounded-lg p-6 hover:border-gray-600 transition-colors cursor-pointer flex flex-col h-full">
-                  <h2 className="text-2xl font-semibold text-white mb-2">{post.title}</h2>
-                  <div className="flex items-center gap-3 text-sm text-gray-500 mb-3">
+                <div className="bg-white border border-[#e4e6eb] rounded-lg p-6 hover:shadow-[0_4px_10px_rgba(0,0,0,0.05)] hover:-translate-y-0.5 transition-all cursor-pointer flex flex-col h-full group">
+                  <h2 className="text-[22px] font-bold text-[#1d2129] mb-3 group-hover:text-[#1a7af8] transition-colors">{post.title}</h2>
+                  <p className="text-[#86909c] text-sm line-clamp-2 mb-4 leading-[1.6]">
+                    {post.excerpt || post.content.replace(/[#*_~>\[\]]/g, '').slice(0, 150) + '...'}
+                  </p>
+                  
+                  <div className="flex items-center gap-4 text-[13px] text-[#86909c] mt-auto pt-4 border-t border-[#e4e6eb] border-dashed">
+                    <span className="text-[#1d2129] font-medium">技术运营</span>
                     <time>
-                      {format(new Date(post.createdAt), 'yyyy-MM-dd HH:mm')}
+                      {format(new Date(post.createdAt), 'yyyy-MM-dd')}
                     </time>
                     {post.category && (
-                      <span className="text-indigo-400 bg-indigo-900/20 px-2 py-0.5 rounded">
+                      <span className="text-[#1a7af8] bg-[#e8f3ff] px-2 py-0.5 rounded-sm">
                         {post.category.name}
                       </span>
                     )}
+                    {post.tags.length > 0 && (
+                        <div className="flex gap-2">
+                        {post.tags.map(tag => (
+                            <span key={tag.id} className="text-[#86909c] bg-[#f2f3f5] px-2 py-0.5 rounded-sm">
+                            #{tag.name}
+                            </span>
+                        ))}
+                        </div>
+                    )}
                   </div>
-                  <p className="text-gray-400 line-clamp-3 mb-4 flex-grow">
-                    {post.excerpt || post.content.replace(/[#*_~>\[\]]/g, '').slice(0, 150) + '...'}
-                  </p>
-                  {post.tags.length > 0 && (
-                    <div className="flex gap-2 mt-auto pt-4 border-t border-gray-800/50">
-                      {post.tags.map(tag => (
-                        <span key={tag.id} className="text-xs text-gray-400 before:content-['#']">
-                          {tag.name}
-                        </span>
-                      ))}
-                    </div>
-                  )}
                 </div>
               </Link>
             ))}
           </div>
-          
+
           {totalPages > 1 && (
             <div className="flex justify-center gap-4 mt-12">
               {currentPage > 1 ? (
-                <Link href={`/?page=${currentPage - 1}`} className="px-4 py-2 bg-gray-800 rounded hover:bg-gray-700">
+                <Link href={`/?page=${currentPage - 1}`} className="px-4 py-2 bg-white border border-[#e4e6eb] text-[#333333] font-medium rounded-md hover:bg-[#f2f3f5] transition-colors">
                   上一页
                 </Link>
               ) : (
-                <span className="px-4 py-2 bg-gray-800/50 text-gray-500 rounded cursor-not-allowed">上一页</span>
+                <span className="px-4 py-2 bg-[#f2f3f5] text-[#c9cdd4] border border-[#e4e6eb] font-medium rounded-md cursor-not-allowed">上一页</span>
               )}
-              <span className="px-4 py-2">
-                第 {currentPage} 页 / 共 {totalPages} 页
+              <span className="px-4 py-2 text-[#86909c] font-medium">
+                {currentPage} / {totalPages}
               </span>
               {currentPage < totalPages ? (
-                <Link href={`/?page=${currentPage + 1}`} className="px-4 py-2 bg-gray-800 rounded hover:bg-gray-700">
+                <Link href={`/?page=${currentPage + 1}`} className="px-4 py-2 bg-white border border-[#e4e6eb] text-[#333333] font-medium rounded-md hover:bg-[#f2f3f5] transition-colors">
                   下一页
                 </Link>
               ) : (
-                <span className="px-4 py-2 bg-gray-800/50 text-gray-500 rounded cursor-not-allowed">下一页</span>
-              )}
+                <span className="px-4 py-2 bg-[#f2f3f5] text-[#c9cdd4] border border-[#e4e6eb] font-medium rounded-md cursor-not-allowed">下一页</span>
             </div>
           )}
         </>

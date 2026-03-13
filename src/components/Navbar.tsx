@@ -6,35 +6,35 @@ export default function Navbar() {
   const { data: session } = useSession();
 
   return (
-    <nav className="bg-gray-900 text-white shadow-md mb-8">
-      <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
-        <Link href="/" className="text-xl font-bold tracking-wider">
+    <nav className="bg-white text-[#1d2129] shadow-sm border-b border-[#e4e6eb] mb-8 sticky top-0 z-50">
+      <div className="max-w-[880px] mx-auto px-4 h-16 flex items-center justify-between">
+        <Link href="/" className="text-xl font-bold tracking-wider hover:text-[#1a7af8] transition-colors">
           极简博客
         </Link>
-        <div className="space-x-4 flex items-center">
-          <Link href="/" className="hover:text-gray-300">
+        <div className="space-x-6 flex items-center text-sm font-medium">
+          <Link href="/" className="text-[#86909c] hover:text-[#1a7af8] transition-colors">
             首页
           </Link>
           {session ? (
             <>
-              <Link href="/admin" className="hover:text-gray-300">
+              <Link href="/admin" className="text-[#86909c] hover:text-[#1a7af8] transition-colors">
                 文章管理
               </Link>
-              <Link href="/admin/taxonomies" className="hover:text-gray-300">
+              <Link href="/admin/taxonomies" className="text-[#86909c] hover:text-[#1a7af8] transition-colors">
                 分类与标签
               </Link>
-              <Link href="/admin/publish" className="bg-indigo-600 px-4 py-2 rounded-md hover:bg-indigo-700 transition">
+              <Link href="/admin/publish" className="bg-[#1a7af8] text-white px-4 py-2 rounded-md hover:bg-[#1664c0] transition-colors shadow-sm font-medium">
                 发布文章
               </Link>
-              <button 
-                onClick={() => signOut()} 
-                className="text-red-400 hover:text-red-300 ml-4 border border-red-500/30 px-3 py-1.5 rounded-md"
+              <button
+                onClick={() => signOut()}
+                className="text-[#eb5757] hover:bg-[#fceeee] px-3 py-1.5 rounded-md transition-colors"
               >
                 退出
               </button>
             </>
           ) : (
-            <Link href="/api/auth/signin" className="text-gray-400 hover:text-white">
+            <Link href="/api/auth/signin" className="text-[#86909c] hover:text-[#1a7af8] transition-colors">
               登录
             </Link>
           )}

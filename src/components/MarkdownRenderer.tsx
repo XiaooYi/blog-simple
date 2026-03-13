@@ -5,7 +5,16 @@ import remarkGfm from 'remark-gfm';
 
 export default function MarkdownRenderer({ content }: { content: string }) {
   return (
-    <div className="prose prose-sm sm:prose-base max-w-none text-gray-800 prose-headings:text-gray-900 prose-a:text-indigo-600 hover:prose-a:text-indigo-500 prose-code:text-rose-600 prose-code:bg-rose-50 prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-pre:bg-gray-50 prose-pre:text-gray-800 prose-pre:border prose-pre:border-gray-200 prose-blockquote:border-l-4 prose-blockquote:border-gray-300 prose-blockquote:text-gray-600 prose-blockquote:bg-gray-50 prose-blockquote:py-1 prose-blockquote:pr-4">
+    <div className="prose prose-sm sm:prose-base max-w-none 
+      prose-p:text-[#333333] prose-p:leading-[1.8] prose-p:text-[16px]
+      prose-headings:text-[#1d2129] prose-headings:font-bold
+      prose-a:text-[#1a7af8] prose-a:no-underline hover:prose-a:underline
+      prose-strong:text-[#1d2129] prose-strong:font-bold
+      prose-blockquote:border-l-4 prose-blockquote:border-[#c9cdd4] prose-blockquote:bg-[#f7f8fa] prose-blockquote:py-2 prose-blockquote:px-4 prose-blockquote:text-[#86909c] prose-blockquote:not-italic
+      prose-code:text-[#eb5757] prose-code:bg-[#f2f3f5] prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded-sm prose-code:font-mono prose-code:before:content-none prose-code:after:content-none
+      prose-pre:bg-[#282c34] prose-pre:text-[#abb2bf] prose-pre:p-4 prose-pre:rounded-md prose-pre:shadow-sm prose-pre:overflow-x-auto
+      prose-li:text-[#333333] prose-li:leading-[1.8]
+      prose-img:rounded-md prose-img:shadow-sm prose-img:mx-auto">
       <ReactMarkdown remarkPlugins={[remarkGfm]}>
         {content}
       </ReactMarkdown>

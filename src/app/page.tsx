@@ -80,6 +80,7 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ p
                 </Link>
               ) : (
                 <span className="px-4 py-2 bg-[#f2f3f5] text-[#c9cdd4] border border-[#e4e6eb] font-medium rounded-md cursor-not-allowed">下一页</span>
+              )}
             </div>
           )}
         </>
